@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import Home from '../components/Home'
 import Cart from '../components/Cart'
+import Income from '../containers/InCome'
+import Personal from '../containers/Personal'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 
 class Main extends Component {
@@ -16,18 +19,24 @@ class Main extends Component {
 
 const Tab = TabNavigator(
     {
-        Home: { screen: Home },
-        Cart: { screen: Cart},
+        '首页': { screen: Home },
+        '佣金': { screen: Income},
+        '购物车': { screen: Cart},
+        '个人中心': { screen: Personal}
     },
     {
         navigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) => {
                 const { routeName } = navigation.state;
                 let iconName;
-                if (routeName === 'Home') {
-                    iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-                } else if (routeName === 'Cart') {
-                    iconName = `ios-options${focused ? '' : '-outline'}`;
+                if (routeName === '首页') {
+                    iconName = `ios-home${focused ? '' : '-outline'}`;
+                } else if (routeName === '购物车') {
+                    iconName = `ios-cart${focused ? '' : '-outline'}`;
+                } else if (routeName === '佣金') {
+                    iconName = `ios-card${focused ? '' : '-outline'}`;
+                } else if (routeName === '个人中心') {
+                    iconName = `ios-contact${focused ? '' : '-outline'}`;
                 }
 
                 // You can return any component that you like here! We usually use an

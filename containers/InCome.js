@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
-class Home extends Component {
+class InCome extends Component {
     static navigationOptions = {
-        title: '首页',
+        title: '佣金',
     };
     render() {
         return (
             <View>
-                <Text>Home</Text>
+                <Text>InCome</Text>
             </View>
         )
     }
 }
 
-export default Home;
+export default InCome;
