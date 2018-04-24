@@ -3,25 +3,28 @@ import { StyleSheet, Text, View } from 'react-native';
 import {
   Button
 } from 'antd-mobile';
+import styled from 'styled-components'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app123!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <StyledView>
+        <StyledText>Open up App.js to start working on your app123!</StyledText>
+        <StyledText>Changes you make will automatically reload.</StyledText>
+        <StyledText>Shake your phone to open the developer menu.</StyledText>
         < Button >antd - mobile button </Button>
-      </View>
+      </StyledView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+const StyledView = sytled.View`
+  backgroundColor: '#fff',
+   alignItems: 'center',
+   justifyContent: 'center',
+`
+
+const StyledText = styled.Text`
+  color: red;
+`
