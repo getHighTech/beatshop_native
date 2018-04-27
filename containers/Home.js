@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import HomeItem from '../components/HomeItem'
 
 class Home extends Component {
     static navigationOptions = {
@@ -7,9 +8,7 @@ class Home extends Component {
     };
     render() {
         return (
-            <View>
-                <Text>Home</Text>
-            </View>
+                <HomeItem />
         )
     }
 }

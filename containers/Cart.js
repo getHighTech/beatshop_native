@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import CartItem from '../components/CartItem'
 
 class Cart extends Component {
     static navigationOptions = {
@@ -7,9 +8,7 @@ class Cart extends Component {
     };
     render() {
         return (
-            <View>
-                <Text>Cart</Text>
-            </View>
+            <CartItem />
         )
     }
 }

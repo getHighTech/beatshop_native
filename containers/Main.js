@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
-import Home from '../components/Home'
-import Cart from '../components/Cart'
+import Home from '../containers/Home'
+import Cart from '../containers/Cart'
 import Income from '../containers/InCome'
 import Personal from '../containers/Personal'
 import Ionicons from 'react-native-vector-icons/Ionicons';
