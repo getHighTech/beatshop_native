@@ -1,17 +1,32 @@
 import React, { Component } from 'react'
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom, addNavigationHelpers } from 'react-navigation'
 import Home from '../containers/Home'
 import Cart from '../containers/Cart'
 import Income from '../containers/InCome'
 import Personal from '../containers/Personal'
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import LoginContainer from '../containers/LoginContainer'
+import ShopDetailContainer from '../containers/ShopDetailContainer'
+import GoodDetailContainer from '../containers/GoodDetailContainer'
+import AuthLoading from '../containers/Auth'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { addListener } from '../redux/redux'
+import { connect } from 'react-redux'
+import SplashScreen from 'react-native-splash-screen'
+import {  BackHandler } from 'react-native'
 
 
 class Main extends Component {
+   
     render() {
+        const { dispatch, nav } = this.props;
         return(
-           <Navigator />
+           <Navigator   
+           navigation={addNavigationHelpers({ 
+            dispatch: dispatch,
+            state: nav,
+            addListener,
+          })} 
+          />
         )
     }
 }
@@ -38,15 +53,16 @@ const Tab = TabNavigator(
                 } else if (routeName === '个人中心') {
                     iconName = `ios-contact${focused ? '' : '-outline'}`;
                 }
-
-                // You can return any component that you like here! We usually use an
-                // icon component from react-native-vector-icons
                 return <Ionicons name={iconName} size={25} color={tintColor} />;
             },
         }),
         tabBarOptions: {
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
+            labelStyle: {
+                fontSize: 10,
+                marginTop: -4,
+            },
         },
         tabBarComponent: TabBarBottom,
         tabBarPosition: 'bottom',
@@ -54,19 +70,32 @@ const Tab = TabNavigator(
         swipeEnabled: false,
     }
 )
-const Navigator = StackNavigator(
+export const Navigator = StackNavigator(
     {
         Tab: { screen: Tab },
+        Login: { screen: LoginContainer},
+        ShopDetail: { screen: ShopDetailContainer },
+        GoodDetail: { screen: GoodDetailContainer },
+        Auth: { screen: AuthLoading},
     },
-    {
+    {   
         navigationOptions: {
-            // headerStyle: { backgroundColor: color.primary }
             headerBackTitle: null,
             headerTintColor: '#333333',
             showIcon: true,
+            headerTitleStyle: {
+                flex: 1,
+                textAlign: 'center',
+            },
         },
     }
 )
 
+const mapStateToProps = state => ({
+    nav: state.nav,
+  });
 
-export default Main;
+
+
+
+export default  connect(mapStateToProps)(Main);

@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import PersonalItem from '../components/PeronalItem'
+import { connect } from 'react-redux'
+import { SignOut } from '../redux/actions/auth'
 
-class Personal extends Component {
-    static navigationOptions = {
-        title: '个人中心',
-    };
-    render() {
-        return (
-            <PersonalItem />
-        )
-    }
+
+const PersonContainer = (props) => {
+    return(
+        <PersonalItem {...props} />
+    )
 }
 
-export default Personal;
+PersonContainer.navigationOptions = {
+    title: '个人中心'
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+
+export default connect(mapStateToProps,{ SignOut })(PersonContainer);

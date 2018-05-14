@@ -10,7 +10,7 @@ class PeronalItem extends Component {
     LoginOut = () => {
         alert('登出', '确定登出?', [
             { text: '取消', onPress: () => console.log(`取消了`) },
-            { text: '登出', onPress: () => console.log(`登出了`) }
+            { text: '登出', onPress: () => this.props.SignOut() }
         ])
     }
     render() {
@@ -44,16 +44,6 @@ class PeronalItem extends Component {
                     </ContentWrap>
                 </CardWrap>
                 <Wrap>
-                    <List >
-                        < ItemWrap
-                            thumb={require('../../assets/images/orders.png')}
-                            onClick={() => { }}
-                            arrow="horizontal"
-                            extra="全部订单"
-                        >
-                            <Text>我的订单</Text>
-                        </ItemWrap >
-                    </List>
                     <OrderWrap>
                         <OrderImg source={require('../../assets/images/wait.png')} /><Text>待付款</Text>
                         <OrderImg source={require('../../assets/images/no.png')} /><Text>未处理</Text>
