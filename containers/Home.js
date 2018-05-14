@@ -12,10 +12,10 @@ class Home extends Component {
         title: '首页',
     }
    componentDidMount() {
-      Meteor.call('get.user.id', 'NR4uitrWdh9eL649k', (err, rlt)=>{
-            Toast.info(JSON.stringify(err), 1);
-            Toast.info(JSON.stringify(rlt), 1);
-      });
+    //   Meteor.call('get.user.id', 'NR4uitrWdh9eL649k', (err, rlt)=>{
+    //         Toast.info(JSON.stringify(err), 1);
+    //         Toast.info(JSON.stringify(rlt), 1);
+    //   });
     }
    
     render() {
@@ -30,7 +30,6 @@ class Home extends Component {
 
 
 const mapStateToProps = state => ({
-    order: state.orders
 })
 
 export default connect(mapStateToProps)(Home);

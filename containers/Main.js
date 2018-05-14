@@ -7,7 +7,6 @@ import Personal from '../containers/Personal'
 import LoginContainer from '../containers/LoginContainer'
 import ShopDetailContainer from '../containers/ShopDetailContainer'
 import GoodDetailContainer from '../containers/GoodDetailContainer'
-import AuthLoading from '../containers/Auth'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { addListener } from '../redux/redux'
 import { connect } from 'react-redux'
@@ -16,7 +15,6 @@ import {  BackHandler } from 'react-native'
 
 
 class Main extends Component {
-   
     render() {
         const { dispatch, nav } = this.props;
         return(
@@ -76,7 +74,6 @@ export const Navigator = StackNavigator(
         Login: { screen: LoginContainer},
         ShopDetail: { screen: ShopDetailContainer },
         GoodDetail: { screen: GoodDetailContainer },
-        Auth: { screen: AuthLoading},
     },
     {   
         navigationOptions: {
