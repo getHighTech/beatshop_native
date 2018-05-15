@@ -7,22 +7,6 @@ import { connect } from 'react-redux'
 import { SignIn } from '../redux/actions/auth'
 
 
-// class LoginContainer extends Component {
-//      static navigationOptions = {
-//          title: '登陆',
-//      }
-//      componentDidMount() {
-//      }
-//     render() {
-        
-//         return(
-//             <ScrollView>
-//                 <Login navigation={this.props.navigation}/>
-//             </ScrollView>
-//         )
-
-//     }
-// }
 
 const LoginContainer = (props) => {
     return(
@@ -33,14 +17,13 @@ const LoginContainer = (props) => {
 }
 
 LoginContainer.navigationOptions = {
-    title: '登陆'
+    title: '登陆',
+    headerLeft: null
 }
 
-
-
-
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    message: state.message
 })
 export default connect(mapStateToProps,{ SignIn })(LoginContainer)
 

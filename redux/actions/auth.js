@@ -1,5 +1,6 @@
 import Meteor from 'react-native-meteor'
 import { AsyncStorage } from 'react-native'
+import { MsgErr } from './message'
 export const USER_SIGNIN = 'USER_SIGNIN'
 export const USER_SIGNOUT = 'USER_SIGNOUT'
 
@@ -23,16 +24,15 @@ export const SignOut = () => {
      }
  }
 
-export const  SignIn = () => {
+export const  SignIn = (username,password) => {
     return (dispatch) => {
         let loginParams = {
-            username: '18026938187',
-            password: 'q1234569'
+            username,
+            password
         }
         Meteor.call('app.user.login','123','wanrenchehui','password',loginParams,(res,err) => {
             console.log(err.type)
-            console.log(JSON.stringify(err))
-            if(err){
+            if(err.type === "users"){
                 console.log(`进来`)
                 let keyValue = [['user',JSON.stringify(err.type)],['token',JSON.stringify(err.msg.stampedToken)]]
                 AsyncStorage.multiSet(keyValue,(err)=>{
@@ -44,6 +44,9 @@ export const  SignIn = () => {
                     
                     console.log(`保存成功`)
                 }) 
+            }else if(err.type === "error") {
+                console.log(err.reason)
+                dispatch(MsgErr(err.reason))
             }
         })
     }

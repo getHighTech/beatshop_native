@@ -2,10 +2,11 @@ import { NavigationActions } from 'react-navigation'
 import { Navigator } from '../../containers/Main'
 import { USER_SIGNIN, USER_SIGNOUT } from '../actions/auth'
 import { AsyncStorage } from 'react-native'
+let token ;
 bootstrapAsync = async () => {
-    return   await AsyncStorage.getItem('token');
+    token =  await AsyncStorage.getItem('token');
 }
-const token = bootstrapAsync()
+console.log(token)
 const firstAction = Navigator.router.getActionForPathAndParams('Tab') || {
     type: 'Navigation/NAVIGATE',
     routeName: 'Tab'

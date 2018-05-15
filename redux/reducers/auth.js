@@ -13,5 +13,5 @@ export default  auth = (state=initialState, action) => {
           return { ...state, isLoggedIn: false }
         default:
           return state
-      }
+    }
 }
