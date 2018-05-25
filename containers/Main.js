@@ -7,18 +7,39 @@ import Personal from '../containers/Personal'
 import LoginContainer from '../containers/LoginContainer'
 import ShopDetailContainer from '../containers/ShopDetailContainer'
 import GoodDetailContainer from '../containers/GoodDetailContainer'
+import LocationContainer from '../containers/LocationContainer'
+import BankCardContainer from '../containers/BankCardContainer'
+import WareHouseContainer from '../containers/WareHouseContainer'
+import SaleGoodContainer from '../containers/SaleGoodContainer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { addListener } from '../redux/redux'
 import { connect } from 'react-redux'
 import SplashScreen from 'react-native-splash-screen'
-import {  BackHandler } from 'react-native'
+import {  BackHandler,AsyncStorage } from 'react-native'
+import { NavigationActions } from 'react-navigation'
+
 
 
 class Main extends Component {
+    constructor(props) {
+        super(props);
+        // this._bootstrapAsync();
+    }
+    _bootstrapAsync = async () => {
+        const token = await AsyncStorage.getItem('token');
+    
+        // This will switch to the App screen or Auth screen and this loading
+        // screen will be unmounted and thrown away.
+        token ? this.props.dispatch(NavigationActions.navigate({ routeName: '首页' })) :  this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
+      };
+    
+  
+
+  
     render() {
         const { dispatch, nav } = this.props;
         return(
-           <Navigator   
+           <Navigator  
            navigation={addNavigationHelpers({ 
             dispatch: dispatch,
             state: nav,
@@ -38,7 +59,7 @@ const Tab = TabNavigator(
         '个人中心': { screen: Personal}
     },
     {
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions: ({ navigation}) => ({
             tabBarIcon: ({ focused, tintColor }) => {
                 const { routeName } = navigation.state;
                 let iconName;
@@ -55,35 +76,56 @@ const Tab = TabNavigator(
             },
         }),
         tabBarOptions: {
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
+            activeTintColor: '#FFD043',
+            inactiveTintColor: '#989898',
             labelStyle: {
                 fontSize: 10,
-                marginTop: -4,
+                marginTop: -10,
+            },
+            style: {
+                backgroundColor: 'rgba(0, 0, 0, 0.78)',
             },
         },
         tabBarComponent: TabBarBottom,
         tabBarPosition: 'bottom',
         animationEnabled: false,
         swipeEnabled: false,
+        
     }
 )
+export const  ConfigAppNavigator = (isLoggedIn) => {
+    return  Navigator;
+}
 export const Navigator = StackNavigator(
     {
         Tab: { screen: Tab },
         Login: { screen: LoginContainer},
         ShopDetail: { screen: ShopDetailContainer },
         GoodDetail: { screen: GoodDetailContainer },
+        Location: { screen: LocationContainer },
+        BankCard: { screen: BankCardContainer },
+        WareHouse: { screen: WareHouseContainer },
+        SaleGood: { screen: SaleGoodContainer },
     },
     {   
         navigationOptions: {
-            headerBackTitle: null,
-            headerTintColor: '#333333',
+            headerTintColor: '#FFD851',
             showIcon: true,
             headerTitleStyle: {
                 flex: 1,
                 textAlign: 'center',
+                color: '#FFD851',
+                fontSize: 22,
+                
             },
+            headerStyle: {
+                backgroundColor: '#424242',
+                borderBottomWidth: 1,
+            },
+            headerBackTitleStyle: {
+                color: '#018080',
+            },
+            headerBackTitle: null
         },
     }
 )

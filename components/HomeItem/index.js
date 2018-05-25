@@ -3,23 +3,21 @@ import { View, Text, Image, ScrollView,TouchableOpacity  } from 'react-native'
 import PicCarousel from '../Carousel'
 import styled from 'styled-components'
 import { Toast } from 'antd-mobile'
-import { NavigationActions } from 'react-navigation'
 
 class HomeItem extends Component {
     render() {
         return (
-            <ScrollView>
-                <PicCarousel/>
-                <ImageWrap onPress={()=>this.props.navigation.navigate('GoodDetail')}>
-                    <ReImage source={{uri: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/cd6658abe164e32802f4040c65d96540.jpg?thumb=1&w=720&h=440'}}/>
-                </ImageWrap>
-                <ImageWrap onPress={()=>this.props.navigation.navigate('GoodDetail')}>
-                    <ReImage source={{uri: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/cd6658abe164e32802f4040c65d96540.jpg?thumb=1&w=720&h=440'}}/>
-                </ImageWrap>
-                <ImageWrap onPress={()=>this.props.navigation.navigate('GoodDetail')}>
-                    <ReImage source={{uri: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/cd6658abe164e32802f4040c65d96540.jpg?thumb=1&w=720&h=440'}}/>
-                </ImageWrap>
-            </ScrollView>
+                <Wrap>
+                    <Img source={require('../../assets/images/background3.jpg')} />
+                    <Card>
+                        <Title>
+                            享受精彩汽车生活享受
+                        </Title>
+                        <Button>
+                            <BtText>立即加入</BtText>
+                        </Button>
+                    </Card>
+                </Wrap>
 
         )
     }
@@ -27,9 +25,47 @@ class HomeItem extends Component {
 
 export default HomeItem;
 
+const Wrap = styled(View)`
+    height: 260px;
+    position:relative;
+
+`
+const Img = styled(Image)`
+    width: 100%;
+    height: 100%;
+`
+
+const Card = styled(View)`
+    
+    background-color: rgba(77, 77, 78, 0.5);
+    padding: 40px 20px;
+    width: 90%;
+    margin: -220px  auto 0 auto;
+    display: flex;
+    align-items: center;
+`
+const Button = styled(View)`
+   background: #FFD851;
+   display: flex;
+   align-items: center;
+   width: 40%;
+   margin: 30px auto 0 auto;
+   padding: 10px 0;
+   border-radius: 4px;
+`
+
+const BtText = styled(Text)`
+    font-size: 16px;
+`
+
+const Title = styled(Text)`
+    fontSize: 20px;
+    color: #fff;
+    z-index: 9999;
+`
 
 const ReImage = styled(Image)`
-    height: 240px;
+    height: 260px;
 `
 const ImageWrap = styled(TouchableOpacity)`
 

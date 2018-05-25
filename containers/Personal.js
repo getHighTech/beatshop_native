@@ -12,7 +12,8 @@ const PersonContainer = (props) => {
 }
 
 PersonContainer.navigationOptions = {
-    title: '个人中心'
+    title: '个人中心',
+    headerLeft: null
 }
 
 const mapStateToProps = state => ({

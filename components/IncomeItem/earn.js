@@ -73,11 +73,11 @@ const ItemTop = styled.View`
     display: flex;
     flex-direction: row;
     background: #00B6EC;
-    padding: 5px 0;
+    padding: 10px 0;
 `
 const ItemBottom = styled.View`
     display: flex;
-    padding: 5px 0;
+    padding: 10px 0;
     flex-direction: row;
 `
 

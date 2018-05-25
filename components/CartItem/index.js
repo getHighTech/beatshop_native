@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { SwipeAction, List, Checkbox, Stepper } from 'antd-mobile'
 import { View, Text, Image, ScrollView  } from 'react-native'
+import CartTabbar from '../CartItem/cartTabbar'
 const CheckboxItem = Checkbox.CheckboxItem;
 class CartItem extends Component {
     constructor(props) {
@@ -17,43 +18,44 @@ class CartItem extends Component {
     }
     render() {
         return (
-            <ScrollView>
                 <CartWrap>
-                    <List>
-                        <CheckboxItem>优酷官方旗舰店</CheckboxItem>
-                    </List>
-                    <GoodItem>
-                        <SwipeAction
-                            right={[
-                                {
-                                    text: '删除',
-                                    onPress: () => console.log('delete'),
-                                    style: { backgroundColor: '#F4333C', color: 'white' },
-                                },
-                            ]}
-                        >
-                            <ListWrap >
-                                <CheckWrap>
-                                    <Img source={{uri: 'https://i1.mifile.cn/a1/pms_1520477459.57598365!180x1800.jpg'}} />
-                                </CheckWrap>
-                                <GoodWrap>
-                                    <Text>红米5A 3GB+32GB</Text>
-                                    <Price>
-                                        ￥699
-                                    </Price>
-                                    <StepperWrap
-                                        showNumber
-                                        max={10}
-                                        min={1}
-                                        value={this.state.val}
-                                        onChange={this.onChange}
-                                    />
-                                </GoodWrap>
-                            </ListWrap>
-                        </SwipeAction>
-                    </GoodItem>
+                    <Content>
+                        <List>
+                            <CheckboxItem>优酷官方旗舰店</CheckboxItem>
+                        </List>
+                        <GoodItem>
+                            <SwipeAction
+                                right={[
+                                    {
+                                        text: '删除',
+                                        onPress: () => console.log('delete'),
+                                        style: { backgroundColor: '#F4333C', color: 'white' },
+                                    },
+                                ]}
+                            >
+                                <ListWrap >
+                                    <CheckWrap>
+                                        <Img source={{uri: 'https://i1.mifile.cn/a1/pms_1520477459.57598365!180x1800.jpg'}} />
+                                    </CheckWrap>
+                                    <GoodWrap>
+                                        <Text>红米5A 3GB+32GB</Text>
+                                        <Price>
+                                            ￥699
+                                        </Price>
+                                        <StepperWrap
+                                            showNumber
+                                            max={10}
+                                            min={1}
+                                            value={this.state.val}
+                                            onChange={this.onChange}
+                                        />
+                                    </GoodWrap>
+                                </ListWrap>
+                            </SwipeAction>
+                        </GoodItem>
+                    </Content>
+                    <CartTabbar />
                 </CartWrap>
-            </ScrollView>
         )
     }
 }
@@ -62,7 +64,10 @@ export default CartItem
 
 
 const CartWrap = styled.View`
-    margin: 0 0 10px 0;
+    height: 100%;
+`
+const Content = styled(ScrollView)`
+    flex-grow: 1
 `
 const ListWrap = styled(List) `
     width: 100%;

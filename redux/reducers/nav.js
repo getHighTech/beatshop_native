@@ -2,21 +2,25 @@ import { NavigationActions } from 'react-navigation'
 import { Navigator } from '../../containers/Main'
 import { USER_SIGNIN, USER_SIGNOUT } from '../actions/auth'
 import { AsyncStorage } from 'react-native'
-let token ;
-bootstrapAsync = async () => {
-    token =  await AsyncStorage.getItem('token');
-}
-console.log(token)
+
+let token = AsyncStorage.getItem('token').then((value) => {
+  console.log(`获取值得`)
+                console.log(value)
+          });
+          console.log(token)
+
 const firstAction = Navigator.router.getActionForPathAndParams('Tab') || {
     type: 'Navigation/NAVIGATE',
     routeName: 'Tab'
   }
 const tempNavState = Navigator.router.getStateForAction(firstAction);
-const secondAction =  token ? firstAction : Navigator.router.getActionForPathAndParams('Login')
+// token ? firstAction :
+const secondAction =   Navigator.router.getActionForPathAndParams('WareHouse')
 const initialNavState = Navigator.router.getStateForAction(
   secondAction,
   tempNavState
 );
+
 
 
 

@@ -5,6 +5,7 @@ import CartItem from '../components/CartItem'
 class Cart extends Component {
     static navigationOptions = {
         title: '购物车',
+        headerLeft: null
     };
     render() {
         return (

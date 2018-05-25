@@ -2,18 +2,65 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Button,List,Modal } from 'antd-mobile'
 import { View,Text, Image, ScrollView } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 const Item = List.Item
 const alert = Modal.alert
 
 
 class PeronalItem extends Component {
-    LoginOut = () => {
+   
+    constructor(props) {
+        super(props)
+        this.state = {
+            show: false,
+        }
+    }
+
+    _ChangeShow = () => {
+        this.setState({
+            show: !this.state.show
+        })
+    }
+
+    _LoginOut = () => {
         alert('登出', '确定登出?', [
             { text: '取消', onPress: () => console.log(`取消了`) },
             { text: '登出', onPress: () => this.props.SignOut() }
         ])
     }
+    _ShowShopItem = () => {
+        const { navigation } = this.props
+        return(
+            <View>
+                <Item
+                         thumb={
+                            <IconWrap>
+                                <Ionicons name={"md-add-circle"}  size={25}  color="#FF582A" />
+                            </IconWrap>
+                            }
+                        onClick={() => {navigation.navigate('WareHouse')}}
+                        arrow="horizontal"
+                        >
+                        新加商品
+                </Item>
+                <Item
+                        thumb={
+                            <IconWrap>
+                                <Ionicons name={"md-alert"}  size={25}  color="#FF582A" />
+                            </IconWrap>
+                            }
+                        onClick={() => {navigation.navigate('SaleGood')}}
+                        arrow="horizontal"
+                        >
+                        正在出售的商品
+                </Item>
+             </View>
+        )
+    }
+
     render() {
+        const { navigation } = this.props
+        
         return(
             <ScrollView>
                 <Bg>
@@ -29,35 +76,81 @@ class PeronalItem extends Component {
 
                     </Info>
                 </Bg>
-                <CardWrap>
-                    <ContentWrap>
-                        <Img source={require('../../assets/images/bwallat.png')} />
-                        <Title>我的钱包</Title>
-                    </ContentWrap>
-                    <ContentWrap>
-                        <Img source={require('../../assets/images/card.png')} />
-                        <Title>卡包</Title>
-                    </ContentWrap>
-                    <ContentWrap>
-                        <Img source={require('../../assets/images/coupon.png')} />
-                        <Title>优惠券</Title>
-                    </ContentWrap>
-                </CardWrap>
                 <Wrap>
-                    <OrderWrap>
-                        <OrderImg source={require('../../assets/images/wait.png')} /><Text>待付款</Text>
-                        <OrderImg source={require('../../assets/images/no.png')} /><Text>未处理</Text>
-                        <OrderImg source={require('../../assets/images/success.png')} /><Text>已完成</Text>
-                        <OrderImg source={require('../../assets/images/close.png')} /><Text>已失效</Text>
-                    </OrderWrap>
+                    <ReList>
+                        <Item
+                        thumb={
+                        <IconWrap>
+                            <Ionicons name={"md-contact"}  size={25}  color="#FF582A" />
+                        </IconWrap>
+                        }
+                        onClick={() => {}}
+                        arrow="horizontal"
+                        >
+                        我的资料
+                        </Item>
+                        <Item
+                        thumb={
+                            <IconWrap>
+                                <Ionicons name={"ios-archive"}  size={30}  color="#FF582A" />
+                            </IconWrap>
+                            }
+                        onClick={() => {this._ChangeShow()}}
+                        arrow={this.state.show ? 'up' : 'down'}
+                       
+                        >
+                        我的店铺
+                        </Item>
+                        {
+                          this.state.show ? this._ShowShopItem() : null
+                       }
+                        <Item
+                        thumb={
+                            <IconWrap>
+                                <Ionicons name={"ios-list-box"}  size={25}  color="#FF582A" />
+                            </IconWrap>
+                            }
+                        onClick={() => {}}
+                        arrow="horizontal"
+                        >
+                        我的订单
+                        </Item>
+                        <Item
+                         thumb={
+                            <IconWrap>
+                                <Ionicons name={"ios-cash"}  size={25}  color="#FF582A" />
+                            </IconWrap>
+                            }
+                        onClick={() => {}}
+                        arrow="horizontal"
+                        >
+                        券、道具、会员
+                        </Item>
+                        <Item
+                         thumb={
+                            <IconWrap>
+                                <Ionicons name={"ios-card"}  size={25}  color="#FF582A" />
+                            </IconWrap>
+                            }
+                        onClick={() => {navigation.navigate('BankCard')}}
+                        arrow="horizontal"
+                        >
+                        我的银行卡
+                        </Item>
+                        <Item
+                         thumb={
+                            <IconWrap>
+                                <Ionicons name={"logo-whatsapp"}  size={25}  color="#FF582A" />
+                            </IconWrap>
+                            }
+                        onClick={() => {}}
+                        arrow="horizontal"
+                        >
+                        我的联系方式
+                        </Item>
+                    </ReList>
                 </Wrap>
-                <Wrap>
-                    <Guide>
-                        <GuideImg source={require('../../assets/images/user.png')} />
-                        <GuideText>新手指南</GuideText>
-                    </Guide>
-                </Wrap>
-                <ReButton type="warning" onClick={this.LoginOut}><Text>退出当前账号</Text></ReButton>
+                <ReButton type="warning" onClick={this._LoginOut}><Text>退出当前账号</Text></ReButton>
             </ScrollView>
         )
     }
@@ -65,7 +158,13 @@ class PeronalItem extends Component {
 
 export default PeronalItem
 
+const IconWrap = styled(View)`
+    margin-right: 10px;
+`
 
+const ReList = styled(List)`
+    margin-top: -48px;
+`
 const Bg = styled.View`
     height: 220px;
     background: #FFCE43;
@@ -110,25 +209,12 @@ const Title = styled.Text`
 
 
 
-const OrderWrap = styled.View`
-    display: flex;
-    padding: 14px 0;
-    flex-direction: row;
-    justify-content: space-around;
-`
-
-
-
-const OrderImg = styled.Image`
-    margin-right: -24px;
-`
 
 
 
 const Wrap = styled.View`
     width: 90%;
     margin: 15px auto 0 auto;
-    border-radius: 5px;
     background: #fff;
 `
 
@@ -156,25 +242,8 @@ const ReButton = styled(Button) `
     margin: 20px auto 0 auto;
 `
 
-const CardWrap = styled.View`
-    width: 90%;
-    margin: -25px auto 0 auto;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    background: #fff;
-    justify-content: space-around;
-`
 
- const ContentWrap = styled.View`
-  padding: 5px 0;
-  display: flex;
-  flex-direction: column;
-`
 const TextName = styled.Text`
     margin-left: 20px;
 `
 
-const GuideText = styled.Text`
-    margin-top: 5px;
-`

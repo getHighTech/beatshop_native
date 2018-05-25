@@ -21,6 +21,7 @@ export const SignOut = () => {
      return async dispatch => {
         let  token  = await AsyncStorage.removeItem('token')
         dispatch(USER_SIGNOUT_SUCCESS())
+        dispatch(MsgErr('LOGOUT SUCCESS'))
      }
  }
 
@@ -41,6 +42,8 @@ export const  SignIn = (username,password) => {
                        console.log(err)
                     }
                     dispatch(USER_SIGNIN_SUCCESS())
+                    dispatch(MsgErr('LOGIN SUCCESS'))
+
                     
                     console.log(`保存成功`)
                 }) 

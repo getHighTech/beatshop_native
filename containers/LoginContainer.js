@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 import Login from '../components/Login'
 import { ScrollView } from 'react-native'
 import { Toast,Button } from 'antd-mobile'
-import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { SignIn } from '../redux/actions/auth'
+import styled from 'styled-components'
 
 
 
 const LoginContainer = (props) => {
     return(
-        <ScrollView>
+        <ScrollWrap>
             <Login {...props} />
-        </ScrollView>
+        </ScrollWrap>
     )
 }
 
@@ -26,4 +26,8 @@ const mapStateToProps = state => ({
     message: state.message
 })
 export default connect(mapStateToProps,{ SignIn })(LoginContainer)
+
+const ScrollWrap = styled(ScrollView)`
+    background: #151313;
+`
 

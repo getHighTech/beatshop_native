@@ -79,7 +79,7 @@ const Footer = styled.View`
 `
 const Info = styled.Text`
      text-align: center;
-     color: #6C6C6C;
-     font-size: 10px;
+     color: #fff;
+     font-size: 12px;
      margin: 24px 0 0 0;
 `

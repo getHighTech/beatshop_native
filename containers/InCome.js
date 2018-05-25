@@ -7,6 +7,7 @@ import IncomeDetail from '../components/IncomeItem/incomeDetail'
 class InCome extends Component {
     static navigationOptions = {
         title: '佣金',
+        headerLeft: null
     };
     render() {
         const tabs = [
